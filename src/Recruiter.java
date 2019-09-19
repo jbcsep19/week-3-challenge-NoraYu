@@ -12,7 +12,7 @@ public class Recruiter{
         for(Person p:database){
             for(Skill skill:p.getSkills()){
                 if(skill.getName().equalsIgnoreCase(s)){
-                    System.out.println(p.getName()+" has this skill. That is the person you are looking for. ");
+                    System.out.println(p.getName()+" has this skill of "+s+". That is the person you are looking for. ");
                     result.add(p);
                     break;
                 } } }

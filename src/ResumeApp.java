@@ -82,10 +82,12 @@ public class ResumeApp {
         Recruiter recruiter=new Recruiter(person);
         recruiter.add_5person();
         recruiter.search_by_skill("java");
+        /*
         for(Person r:recruiter.getDatabase()){
             System.out.println(r.getName());
-
         }
+
+         */
 
 
 

@@ -38,6 +38,47 @@ public class Person {
         this.skills=s;
     }
 
+    public void change_name(String n){
+        this.name=n;
+    }
+    public void change_email(String e){
+        this.email=e;
+    }
+    public void change_phone(String p){
+        this.phone=p;
+    }
+
+    public void print_resume(){
+        System.out.println("=============================================================");
+        System.out.println(this.getName());
+        System.out.println(this.getEmail());
+        System.out.println(this.getPhone());
+        System.out.println();
+        System.out.println("Education");
+        System.out.println();
+        for(Education e:this.getEducations()){
+            System.out.println(e.getDegree_type()+" in "+e.getMajor()+",\n"+e.getUniversity_name()+", "+e.getGraduation_year());
+            System.out.println();
+        }
+        System.out.println();
+        System.out.println("Experience");
+        System.out.println();
+        for(Work w:this.getWorks()){
+            System.out.println(w.getJob_title()+"\n "+w.getCompany()+", "+w.getStart_date()+" - "+w.getEnd_date());
+            for(String jb:w.getCompany_duty().get(w.getCompany())){
+                System.out.println("-Duty: "+jb);
+            }
+            System.out.println();}
+        System.out.println();
+        System.out.println("Skills");
+        System.out.println();
+        for(Skill s:this.getSkills()){
+            System.out.println(s.getName()+", "+s.getRating());
+            System.out.println();
+        }
+
+    }
+
     public String getName() {
         return name;
     }
@@ -85,4 +126,5 @@ public class Person {
     public void setSkills(Skill s) {
         this.skills.add(s);
     }
+
 }

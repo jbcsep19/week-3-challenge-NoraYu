@@ -9,6 +9,8 @@ public class ResumeApp {
         ArrayList<Skill> skills=new ArrayList<Skill>();
 
 
+
+
         System.out.println("Please entry Your name");
         String name=k.nextLine();
         System.out.println("Please entry Your email");
@@ -16,7 +18,7 @@ public class ResumeApp {
         System.out.println("Please entry Your phone number");
         String phone=k.nextLine();
 
-        System.out.println("Please entry \"y\" to go to educational info part. Entry \"q\" to kip this part");
+        System.out.println("Please entry \"y\" to go to educational info part. Entry \"q\" to skip this part");
         String e_check=k.nextLine();
         while(e_check.equalsIgnoreCase("y")) {
             if(e_check.equalsIgnoreCase("q")){break;}
@@ -33,16 +35,18 @@ public class ResumeApp {
                 educations.add(education);
             }
             System.out.println("Entry \"y\" to add another education info,\"q\" to add work experience part");
+            System.out.println();
             e_check=k.nextLine();
         }
 
 
 
-        System.out.println("Please entry \"y\" to start entry your work experience. Entry \"q\" to kip this part");
+        System.out.println("Please entry \"y\" to start entry your work experience. Entry \"q\" to skip this part");
         e_check=k.nextLine();
         while(e_check.equalsIgnoreCase("y")) {
             if(e_check.equalsIgnoreCase("q")){break;}
             else{
+                ArrayList<String>job_description=new ArrayList<String>();
                 System.out.println("Please entry Your company,");
                 String company = k.nextLine();
                 System.out.println("Please entry Your job title");
@@ -52,7 +56,17 @@ public class ResumeApp {
                 System.out.println("Please entry Your end date");
                 String end_date = k.nextLine();
                 System.out.println("Please entry Your job description");
-                String job_description = k.nextLine();
+                String job_des= k.nextLine();
+                job_description.add(job_des);
+                do{
+
+                    System.out.println("Entry \"y\" to add another job description,\"q\" when you finish this part");
+
+                    job_des= k.nextLine();
+                    if(!job_des.equalsIgnoreCase("y")&&!job_des.equalsIgnoreCase("q")){
+                    job_description.add(job_des);}}
+                while (job_des.equalsIgnoreCase("y"));
+
                 Work work = new Work(company,job_title,start_date,end_date,job_description);
                 works.add(work);
             }
@@ -61,7 +75,7 @@ public class ResumeApp {
         }
 
 
-        System.out.println("Please entry \"y\" to start entry Your skills. Entry \"q\" to kip this part");
+        System.out.println("Please entry \"y\" to start entry Your skills. Entry \"q\" to skip this part");
         e_check=k.nextLine();
         while(e_check.equalsIgnoreCase("y")) {
             if(e_check.equalsIgnoreCase("q")){break;}
@@ -72,53 +86,37 @@ public class ResumeApp {
                 String rating = k.nextLine();
 
                 Skill skill = new Skill(s_name,rating);
+                System.out.println();
                 skills.add(skill);
             }
-            System.out.println("Entry \"y\" to add another work experience,\"q\" when you've done");
+            System.out.println("Entry \"y\" to add another skill,\"q\" when you've done");
             e_check=k.nextLine();
         }
+        System.out.println();
 
         Person person=new Person(name,email,phone,educations,works,skills);
         Recruiter recruiter=new Recruiter(person);
         recruiter.add_5person();
         recruiter.search_by_skill("java");
-        /*
-        for(Person r:recruiter.getDatabase()){
-            System.out.println(r.getName());
+
+        person.print_resume();
+
+        System.out.println("Do you want to change your name? Entry new name or \"n\" to make no change.");
+        e_check=k.nextLine();
+        if(!e_check.equalsIgnoreCase("n")){
+            person.change_name(e_check);
+        }
+        System.out.println("Do you want to change your email? Entry new email or \"n\" to make no change.");
+        e_check=k.nextLine();
+        if(!e_check.equalsIgnoreCase("n")){
+            person.change_email(e_check);
+        }
+        System.out.println("Do you want to change your phone number? Entry new phone number or \"n\" to make no change.");
+        e_check=k.nextLine();
+        if(!e_check.equalsIgnoreCase("n")){
+            person.change_phone(e_check);
         }
 
-         */
-
-
-
-
-
-
-        System.out.println("=============================================================");
-        System.out.println(person.getName());
-        System.out.println(person.getEmail());
-        System.out.println(person.getPhone());
-        System.out.println();
-        System.out.println("Education");
-        System.out.println();
-        for(Education e:person.getEducations()){
-            System.out.println(e.getDegree_type()+" in "+e.getMajor()+",\n"+e.getUniversity_name()+", "+e.getGraduation_year());
-        }
-        System.out.println();
-        System.out.println("Experience");
-        System.out.println();
-        for(Work w:person.getWorks()){
-            System.out.println(w.getJob_title()+"\n "+w.getCompany()+", "+w.getStart_date()+" - "+w.getEnd_date()+"\n-Duty: "+w.getJob_description());
-        }
-        System.out.println();
-        System.out.println("Skills");
-        System.out.println();
-        for(Skill s:person.getSkills()){
-            System.out.println(s.getName()+", "+s.getRating());
-        }
-
-
-
-
+        person.print_resume();
     }
 }

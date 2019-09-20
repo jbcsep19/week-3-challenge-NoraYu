@@ -8,9 +8,6 @@ public class ResumeApp {
         ArrayList<Work> works=new ArrayList<Work>();
         ArrayList<Skill> skills=new ArrayList<Skill>();
 
-
-
-
         System.out.println("Please entry Your name");
         String name=k.nextLine();
         System.out.println("Please entry Your email");

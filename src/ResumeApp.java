@@ -94,7 +94,6 @@ public class ResumeApp {
         Person person=new Person(name,email,phone,educations,works,skills);
         Recruiter recruiter=new Recruiter(person);
         recruiter.add_5person();
-        recruiter.search_by_skill("java");
 
         person.print_resume();
 
@@ -114,6 +113,22 @@ public class ResumeApp {
             person.change_phone(e_check);
         }
 
+
         person.print_resume();
+        e_check="y";
+        while(!e_check.equalsIgnoreCase("q")){
+            System.out.println("Do you want add another resume? entry any key to build a new resume. q to quit");
+            e_check=k.nextLine();
+            if(e_check.equalsIgnoreCase("q")){break;}
+            else{
+            Resume r=new Resume();
+            Person n_p=r.build_resume();
+            recruiter.setDatabase(n_p);}
+        }
+
+
+        System.out.println("enter the skill you are looking for");
+        e_check=k.nextLine();
+        recruiter.search_by_skill(e_check);
     }
 }
